@@ -507,7 +507,7 @@
         const originalText = btn.innerText;
         btn.disabled = true; btn.innerHTML = `<span class="spinner"></span> ${t('tip_dns_check')}`;
         try {
-            const res = await fetch(`https://doh2.1442101062.eu.org/dns-query?name=_acme-challenge.${domain}&type=TXT`, { headers: { 'Accept': 'application/dns-json' } });
+            const res = await fetch(`https://doh.pub/dns-query?name=_acme-challenge.${domain}&type=TXT`, { headers: { 'Accept': 'application/dns-json' } });
             const data = await res.json();
             let found = data.Answer && data.Answer.some(rec => rec.data.replace(/^"|"$/g, '') === expectedValue);
             if (found) { btn.className = "ml-2 px-2 py-1 bg-green-100 text-green-700 text-xs rounded font-bold border border-green-200 w-20 text-center"; btn.innerText = t('tip_dns_ok'); }
